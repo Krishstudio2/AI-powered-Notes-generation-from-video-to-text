@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Upload</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .custom-file-input:lang(en)~.custom-file-label::after {
+            content: "Browse";
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>File Upload Form</h1>
+        <form action="/success" method="POST" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="customFile" name="file">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+		<div class="mt-3" id="selected-file"></div>
+    </div>
+<script>
+		$(document).ready(function() {
+			$('.custom-file-input').on('change', function() {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).next('.custom-file-label').addClass("selected").html(fileName);
+				$('#selected-file').html("Selected file: " + fileName);
+			});
+<!--			// Reset file input-->
+<!--			$('.btn').on('click', function() {-->
+<!--				$('.custom-file-input').val('');-->
+<!--				$('.custom-file-label').removeClass('selected').html('Choose file');-->
+<!--				$('#selected-file').html('');-->
+<!--			});-->
+		});
+	</script>
+
+</body>
+</html>
